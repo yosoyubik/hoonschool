@@ -20,7 +20,7 @@
           +(wins)
         wins
     %+  expect-eq
-      !>  253
+      !>  240
       !>  wins
   ==
 ::
@@ -46,7 +46,7 @@
   =/  b=deck
     ~[[%hearts 1] [%diamonds 1] [%clubs 1] [%spades 12] [%hearts 12]]
   %+  expect-eq
-    !>  "Player 1 wins!"
+    !>  "Player 2 wins!"
     !>  (compare a b)
 ::
 ++  test-flush
@@ -69,7 +69,7 @@
   =/  b=deck
     ~[[%hearts 1] [%diamonds 1] [%clubs 1] [%spades 2] [%hearts 12]]
   %+  expect-eq
-    !>  "Player 1 wins!"
+    !>  "Player 2 wins!"
     !>  (compare a b)
 ::
 ++  test-two-pair
@@ -78,7 +78,7 @@
   =/  b=deck
     ~[[%hearts 1] [%diamonds 1] [%clubs 13] [%spades 12] [%hearts 12]]
   %+  expect-eq
-    !>  "Player 1 wins!"
+    !>  "Player 2 wins!"
     !>  (compare a b)
 ::
 ++  test-one-pair
@@ -87,7 +87,7 @@
   =/  b=deck
     ~[[%hearts 1] [%diamonds 1] [%clubs 13] [%spades 2] [%hearts 12]]
   %+  expect-eq
-    !>  "Player 1 wins!"
+    !>  "Player 2 wins!"
     !>  (compare a b)
 ::
 ++  test-high-card
@@ -96,7 +96,7 @@
   =/  b=deck
     ~[[%hearts 12] [%diamonds 13] [%clubs 3] [%spades 1] [%hearts 2]]
   %+  expect-eq
-    !>  "Player 1 wins!"
+    !>  "Player 2 wins!"
     !>  (compare a b)
 ::
 --

@@ -7,8 +7,12 @@
 ::
 ++  compare
   |=  [a=deck b=deck]
-  =/  s-a  (score a)
-  =/  s-b  (score b)
+  ::  we convert 1s to 14s
+  ::
+  =/  a-m=deck  (turn a |=(e=darc ?:(=(val.e 1) [sut.e 14] [sut.e val.e])))
+  =/  b-m=deck  (turn b |=(e=darc ?:(=(val.e 1) [sut.e 14] [sut.e val.e])))
+  =/  s-a  (score a-m)
+  =/  s-b  (score b-m)
   |-
   ?~  s-a  "It's a tie!"
   ?~  s-b  "It's a tie!"
