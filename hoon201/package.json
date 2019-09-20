@@ -1,5 +1,5 @@
 {
-  "name": "data sync",
+  "name": "data-sync",
   "version": "0.0.1",
   "description": "Sync files across piers",
   "main": "node install.js",
