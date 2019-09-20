@@ -1,0 +1,23 @@
+{
+  "name": "data sync",
+  "version": "0.0.1",
+  "description": "Sync files across piers",
+  "main": "node install.js",
+  "scripts": {
+    "start": "node install.js",
+    "build": "gulp",
+    "serve": "gulp watch"
+  },
+  "author": "Tlon Corp",
+  "license": "MIT",
+  "repository": "https://github.com/yosoyubik/hoonschool",
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  },
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "gulp-cli": "2.2.0",
+    "mv": "^2.1.1",
+    "promise": "^8.0.3"
+  }
+}
