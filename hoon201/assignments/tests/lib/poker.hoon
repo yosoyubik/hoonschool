@@ -25,40 +25,40 @@
   ==
 ::
 ++  test-straight-flush
-  =/  a=deck  ~[[*suit 2] [*suit 3] [*suit 4] [*suit 5] [*suit 6]]
-  =/  b=deck  ~[[*suit 6] [*suit 3] [*suit 4] [*suit 5] [*suit 7]]
+  =/  a=deck  ~[[%spades 10] [%spades 7] [%spades 9] [%spades 8] [%spades 6]]
+  =/  b=deck  ~[[%hearts 8] [%hearts 6] [%hearts 7] [%hearts 5] [%hearts 4]]
   %+  expect-eq
-    !>  "Player 2 wins!"
+    !>  "Player 1 wins!"
     !>  (compare a b)
 ::
 ++  test-four-of-a-kind
   =/  a=deck
     ~[[%hearts 12] [%diamonds 12] [%clubs 12] [%spades 12] [%hearts 6]]
   =/  b=deck
-    ~[[%hearts 12] [%diamonds 12] [%clubs 12] [%spades 12] [%hearts 7]]
+    ~[[%spades 11] [%diamonds 11] [%clubs 11] [%spades 9] [%hearts 7]]
   %+  expect-eq
-    !>  "Player 2 wins!"
+    !>  "Player 1 wins!"
     !>  (compare a b)
 ::
 ++  test-full-house
   =/  a=deck
     ~[[%hearts 12] [%diamonds 12] [%clubs 12] [%spades 2] [%hearts 2]]
   =/  b=deck
-    ~[[%hearts 1] [%diamonds 1] [%clubs 1] [%spades 12] [%hearts 12]]
+    ~[[%hearts 1] [%diamonds 1] [%clubs 1] [%spades 11] [%hearts 11]]
   %+  expect-eq
     !>  "Player 2 wins!"
     !>  (compare a b)
 ::
 ++  test-flush
-  =/  a=deck  ~[[*suit 4] [*suit 10] [*suit 5] [*suit 6] [*suit 7]]
-  =/  b=deck  ~[[*suit 6] [*suit 4] [*suit 10] [*suit 5] [*suit 7]]
+  =/  a=deck  ~[[%hearts 4] [%hearts 10] [%hearts 5] [%hearts 6] [%hearts 7]]
+  =/  b=deck  ~[[%diamonds 6] [%diamonds 4] [%diamonds 10] [%diamonds 5] [%diamonds 7]]
   %+  expect-eq
     !>  "It's a tie!"
     !>  (compare a b)
 ::
 ++  test-straight
-  =/  a=deck  ~[[%hearts 2] [*suit 3] [*suit 4] [*suit 5] [*suit 6]]
-  =/  b=deck  ~[[*suit 7] [*suit 3] [%hearts 4] [*suit 5] [*suit 6]]
+  =/  a=deck  ~[[%hearts 2] [%spades 3] [%spades 4] [%diamonds 5] [%diamonds 6]]
+  =/  b=deck  ~[[%diamonds 7] [%hearts 3] [%hearts 4] [%spades 5] [%spades 6]]
   %+  expect-eq
     !>  "Player 2 wins!"
     !>  (compare a b)
@@ -67,7 +67,7 @@
   =/  a=deck
     ~[[%hearts 12] [%diamonds 12] [%clubs 12] [%spades 3] [%hearts 2]]
   =/  b=deck
-    ~[[%hearts 1] [%diamonds 1] [%clubs 1] [%spades 2] [%hearts 12]]
+    ~[[%hearts 1] [%diamonds 1] [%clubs 1] [%spades 2] [%spades 12]]
   %+  expect-eq
     !>  "Player 2 wins!"
     !>  (compare a b)
@@ -76,7 +76,7 @@
   =/  a=deck
     ~[[%hearts 12] [%diamonds 12] [%clubs 2] [%spades 3] [%hearts 2]]
   =/  b=deck
-    ~[[%hearts 1] [%diamonds 1] [%clubs 13] [%spades 12] [%hearts 12]]
+    ~[[%hearts 1] [%diamonds 1] [%clubs 13] [%spades 12] [%clubs 12]]
   %+  expect-eq
     !>  "Player 2 wins!"
     !>  (compare a b)
@@ -94,9 +94,9 @@
   =/  a=deck
     ~[[%hearts 12] [%diamonds 13] [%clubs 4] [%spades 3] [%hearts 2]]
   =/  b=deck
-    ~[[%hearts 12] [%diamonds 13] [%clubs 3] [%spades 1] [%hearts 2]]
+    ~[[%hearts 13] [%diamonds 10] [%clubs 3] [%spades 1] [%hearts 3]]
   %+  expect-eq
-    !>  "Player 2 wins!"
+    !>  "Player 1 wins!"
     !>  (compare a b)
 ::
 --
