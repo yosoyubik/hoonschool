@@ -7,22 +7,25 @@
 ::
 ++  compare
   |=  [a=deck b=deck]
+  ^-  [tape (unit hand)]
   ::  we convert 1s to 14s
   ::
   =/  a-m=deck  (turn a |=(e=darc ?:(=(val.e 1) [sut.e 14] [sut.e val.e])))
   =/  b-m=deck  (turn b |=(e=darc ?:(=(val.e 1) [sut.e 14] [sut.e val.e])))
-  =/  s-a  (score a-m)
-  =/  s-b  (score b-m)
-  |-
-  ?~  s-a  "It's a tie!"
-  ?~  s-b  "It's a tie!"
-  ?:  (gth i.s-a i.s-b)  "Player 1 wins!"
-  ?:  (lth i.s-a i.s-b)  "Player 2 wins!"
-  $(s-a t.s-a, s-b t.s-b)
+  =/  p1=[(list @) hand]  (score a-m)
+  =/  p2=[(list @) hand]  (score b-m)
+  =*  s1  -.p1
+  =*  s2  -.p2
+  |-  ^-  [tape (unit hand)]
+  ?~  s1  ["It's a tie!" ~]
+  ?~  s2  ["It's a tie!" ~]
+  ?:  (gth i.s1 i.s2)  ["Player 1 wins!" `+.p1]
+  ?:  (lth i.s1 i.s2)  ["Player 2 wins!" `+.p2]
+  $(s1 t.s1, s2 t.s2)
 ::
 ++  score
   |=  d=deck
-  ^-  (list @)
+  ^-  [(list @) hand]
   =/  h=deck  (sort-hand d)
   ::  we store the list of all values
   ::
@@ -40,14 +43,14 @@
     ?:  s.straight-flush
       :: straight-flush
       ::
-      (limo [8 (snag 0 vals) ~])
+      [(limo [8 (snag 0 vals) ~]) %straight-flush]
     ::  flush
     ::
-    (limo [5 vals])
+    [(limo [5 vals]) %flush]
   ?:  s.straight-flush
     :: straight
     ::
-    (limo [4 (snag 0 vals) ~])
+    [(limo [4 (snag 0 vals) ~]) %straight]
   ::  checking for 4/3/2-card groupings
   ::
   =/  groups=(jar @ @)
@@ -67,26 +70,26 @@
   ?^  quads
     ::  four-of-a-kind
     ::
-    (limo [7 (weld quads lones)])
+    [(limo [7 (weld quads lones)]) %four-of-a-kind]
   ?^  trips
     ?^  pairs
       ::  full house
       ::
-      (limo [6 (weld trips pairs)])
+      [(limo [6 (weld trips pairs)]) %full-house]
     ::  three-of-a-kind
     ::
-    (limo [3 (weld trips (sort lones gth))])
+    [(limo [3 (weld trips (sort lones gth))]) %three-of-a-kind]
   ?^  pairs
     ?:  (gth (lent pairs) 1)
       ::  two-pairs
       ::
-      (limo [2 (weld (sort pairs gth) lones)])
+      [(limo [2 (weld (sort pairs gth) lones)]) %two-pairs]
     ::  one-pair
     ::
-    (limo [1 (weld pairs (sort lones gth))])
+    [(limo [1 (weld pairs (sort lones gth))]) %one-pair]
   ::  high-card
   ::
-  (limo [0 vals])
+  [(limo [0 vals]) %high-card]
 ::
 ++  extract-groups
   |=  m=(list [@ (list suit)])

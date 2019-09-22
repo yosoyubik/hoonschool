@@ -2,6 +2,17 @@
 +$  suit  ?(%hearts %spades %clubs %diamonds)
 +$  darc  [sut=suit val=@ud]
 +$  deck  (list darc)
++$  hand
+  $?  %straight-flush
+      %four-of-a-kind
+      %full-house
+      %flush
+      %straight
+      %three-of-a-kind
+      %two-pairs
+      %one-pair
+      %high-card
+  ==
 ++  make-deck
   ^-  deck
   =|  mydeck=deck
