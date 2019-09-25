@@ -27,9 +27,22 @@
 ++  test-straight-flush
   =/  a=deck  ~[[%spades 10] [%spades 7] [%spades 9] [%spades 8] [%spades 6]]
   =/  b=deck  ~[[%hearts 8] [%hearts 6] [%hearts 7] [%hearts 5] [%hearts 4]]
-  %+  expect-eq
-    !>  ["Player 1 wins!" `%straight-flush]
-    !>  (compare a b)
+  =/  r-f=deck  ~[[%spades 1] [%spades 13] [%spades 12] [%spades 11] [%spades 10]]
+  =/  s-w=deck  ~[[%hearts 1] [%hearts 2] [%hearts 3] [%hearts 4] [%hearts 5]]
+  ;:  weld
+    %+  expect-eq
+      !>  ["Player 1 wins!" `%straight-flush]
+      !>  (compare a b)
+    %+  expect-eq
+      !>  ["Player 1 wins!" `%straight-flush]
+      !>  (compare r-f a)
+    %+  expect-eq
+      !>  ["Player 2 wins!" `%straight-flush]
+      !>  (compare s-w a)
+    %+  expect-eq
+      !>  ["Player 2 wins!" `%straight-flush]
+      !>  (compare s-w b)
+  ==
 ::
 ++  test-four-of-a-kind
   =/  a=deck
@@ -57,11 +70,20 @@
     !>  (compare a b)
 ::
 ++  test-straight
-  =/  a=deck  ~[[%hearts 2] [%spades 3] [%spades 4] [%diamonds 5] [%diamonds 6]]
-  =/  b=deck  ~[[%diamonds 7] [%hearts 3] [%hearts 4] [%spades 5] [%spades 6]]
-  %+  expect-eq
-    !>  ["Player 2 wins!" `%straight]
-    !>  (compare a b)
+  =/  a=deck    ~[[%hearts 2] [%spades 3] [%spades 4] [%diamonds 5] [%diamonds 6]]
+  =/  b=deck    ~[[%diamonds 7] [%hearts 3] [%hearts 4] [%spades 5] [%spades 6]]
+  =/  b-s=deck  ~[[%hearts 1] [%diamonds 2] [%diamonds 3] [%diamonds 4] [%hearts 5]]
+  ;:  weld
+    %+  expect-eq
+      !>  ["Player 2 wins!" `%straight]
+      !>  (compare a b)
+    %+  expect-eq
+      !>  ["Player 1 wins!" `%straight]
+      !>  (compare a b-s)
+    %+  expect-eq
+      !>  ["Player 1 wins!" `%straight]
+      !>  (compare b b-s)
+  ==
 ::
 ++  test-three-of-a-kind
   =/  a=deck
@@ -98,5 +120,4 @@
   %+  expect-eq
     !>  ["Player 2 wins!" `%high-card]
     !>  (compare a b)
-::
 --

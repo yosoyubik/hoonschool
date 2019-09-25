@@ -12,6 +12,8 @@
   ::
   =/  a-m=deck  (turn a |=(e=darc ?:(=(val.e 1) [sut.e 14] [sut.e val.e])))
   =/  b-m=deck  (turn b |=(e=darc ?:(=(val.e 1) [sut.e 14] [sut.e val.e])))
+  ::  If
+  ::
   =/  p1=[(list @) hand]  (score a-m)
   =/  p2=[(list @) hand]  (score b-m)
   =*  s1  -.p1
@@ -38,8 +40,15 @@
       :+  e
         &(f =(sut.a sut.e))
       &(s =((sub val.a val.e) 1))
+  ::  check for ace-low straight
+  ::
+  =/  low-straight=?  =(vals ~[14 5 4 3 2])
   ::
   ?:  f.straight-flush
+    ?:  low-straight
+      ::  steel wheel
+      ::
+      [(limo [8 (snag 1 vals) ~]) %straight-flush]
     ?:  s.straight-flush
       :: straight-flush
       ::
@@ -47,6 +56,10 @@
     ::  flush
     ::
     [(limo [5 vals]) %flush]
+  ?:  low-straight
+    ::  steel wheel
+    ::
+    [(limo [4 (snag 1 vals) ~]) %straight]
   ?:  s.straight-flush
     :: straight
     ::

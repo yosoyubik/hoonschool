@@ -1,6 +1,6 @@
 
 |%
-++  hands
+++  hands  
   :~  ~[[%clubs 8] [%spades 10] [%clubs 13] [%hearts 9] [%spades 4] [%diamonds 7] [%spades 2] [%diamonds 5] [%spades 3] [%clubs 1]]
       ~[[%clubs 5] [%diamonds 1] [%diamonds 5] [%clubs 1] [%clubs 9] [%clubs 7] [%hearts 5] [%diamonds 8] [%diamonds 10] [%spades 13]]
       ~[[%hearts 3] [%hearts 7] [%spades 6] [%clubs 13] [%spades 11] [%hearts 12] [%diamonds 10] [%clubs 11] [%diamonds 2] [%spades 8]]
