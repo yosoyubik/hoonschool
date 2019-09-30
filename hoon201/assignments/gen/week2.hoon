@@ -1,51 +1,75 @@
 ::  Week 2:
 ::    Write a depth-first search of a tree
 ::    https://en.wikipedia.org/wiki/Depth-first_search
-::::
+::
 !:
 ::
 =<  :-  %say
     |=  [[* eny=@uv *] *]
-    =/  d=deck  (shuffle-deck make-deck eny)
-    =^  a=deck  d  (draw 5 d)
-    =^  b=deck  d  (draw 5 d)
+    =/  =nuclear-tree  innit:dfs
     :-  %noun
-    [(dfs a b) a^b]
+    :*  traverse+~(traverse dfs nuclear-tree)
+        search-1+(~(search dfs nuclear-tree) 1)
+        search-8+(~(search dfs nuclear-tree) 8)
+        search-0+(~(search dfs nuclear-tree) 0)
+        search-99+(~(search dfs nuclear-tree) 99)
+    ==
 ::
 =>  :: Type declarations
     ::
     |%
-    ++  tree
-      |$  [item]
+    +*  tree  [item]
       $@(~ [n=item l=(tree item) r=(tree item)])
     ::
-    ::  A dictionary stores words (represented as cords) that
-    ::  we might find when learning a new language and whose
-    ::  meaning we don't know yet, but we want to remember.
-    ::  For example: in Danish the words 'mor' and 'mord' are
-    ::  spelled different but pronounced similarly by a non-native
-    ::  speaker not accustomed to the glottal-stop.
+    :: A tree of atoms
     ::
-    ++  dictionary  (tree cord)
+    ++  nuclear-tree
+      ::  Atoms stored as a binary tree
+      ::
+      (tree atom)
     --
 ::
 |%
-++  search
+++  dfs
   ::  Map door with a DFS gate in it
   ::
-  |_  d=dictionary
+  |_  nt=nuclear-tree
   ::
   ::  Innitializes the map with a provided text represented as a tape
   ::
   ++  innit
-    ^+  d
+    ^+  nt
+    ::          1
+    ::       /    \
+    ::      2      7
+    ::     / \    / \
+    ::    3   6  8   11
+    ::  /  \    /  \
+    :: 4   5   9  10
+    ::
     :+  1
       l=[2 [3 [4 ~ ~] [5 ~ ~]] [6 ~ ~]]
-    r=[8 [9 [10 ~ ~] [11 ~ ~]] [8 ~ ~]]
+    r=[7 [8 [9 ~ ~] [10 ~ ~]] [11 ~ ~]]
   ::
-  ::  Implementation of a DFS algorithm
+  ::  Implementation of a DFS traversal algorithm
+  ::  to shows the order in which the nodes are visited
   ::
-  ++  dfs
+  ++  traverse
+    |-  ^-  (list @)
+    ?~  nt  ~
+    ;:  weld
+      ~[n.nt]
+      $(nt l.nt)  $(nt r.nt)
+    ==
+  ::
+  ::  Implementation of a DFS search algorithm
+  ::
+  ++  search
+    |=  e=@
+    |-  ^-  ?
+    ?~  nt  %.n
+    ?:  =(e n.nt)  %.y
+    |($(nt l.nt) $(nt r.nt))
   --
 --
 ::
