@@ -1,4 +1,4 @@
-::  Week 2:
+::  Week 3:
 ::    Write “+turn” w/o stdlib
 ::
 ::  Tests are included in the generator for easier checking the correctness
