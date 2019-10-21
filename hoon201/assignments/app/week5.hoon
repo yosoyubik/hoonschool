@@ -91,6 +91,7 @@
     ~&  ['Pokedex: ' pokedex]
     ::  Nothing to see here...
     ::
+    (pure:m pokedex)
   ::
   ::  Fetch Pokemon
   ::
