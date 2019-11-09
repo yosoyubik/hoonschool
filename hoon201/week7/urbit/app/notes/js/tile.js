@@ -19218,7 +19218,7 @@
             }.call(commonjsGlobal));
             });
 
-            const _jsxFileName = "/Users/jose/urbit/create-landscape-app/tile/tile.js";
+            const _jsxFileName = "/Users/jose/Dropbox/urbit/hoonschool/hoon201/week7/tile/tile.js";
             class EnterNote extends react.Component {
 
               keyPress(e) {

@@ -1,4 +1,4 @@
-const _jsxFileName = "/Users/jose/urbit/create-landscape-app/tile/tile.js";import React, { Component } from 'react';
+const _jsxFileName = "/Users/jose/Dropbox/urbit/hoonschool/hoon201/week7/tile/tile.js";import React, { Component } from 'react';
 import classnames from 'classnames';
 import _ from 'lodash';
 
