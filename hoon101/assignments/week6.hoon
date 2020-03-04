@@ -18,12 +18,12 @@
 ::
 =>  |%
     +|  %types
-    +$  palo   $?  %oros  %copas  %espadas  %bastos
-               ==
+    +$  palo  ?(%oros %copas %espadas %bastos)
     ::
-    +$  naipe  $?  %as     %dos   %tres   %cuatro  %cinco    %seis
-                    %siete  %ocho  %nueve  %sota    %caballo  %rey
-                ==
+    +$  naipe
+      $?  %as     %dos   %tres   %cuatro  %cinco    %seis
+          %siete  %ocho  %nueve  %sota    %caballo  %rey
+      ==
     ::
     +$  carta  [=palo =naipe]
     --
@@ -32,11 +32,12 @@
 +|  %engine
 ++  baraja
   |_  [cartas=(list carta)]
-  ++  this  .
+  ++  this    .
   ++  palos   ~[%copas %espadas %bastos %oros]
-  ++  naipes  :~  %as     %dos   %tres   %cuatro  %cinco    %seis
-                  %siete  %ocho  %nueve  %sota    %caballo  %rey
-              ==
+  ++  naipes
+    :~  %as     %dos   %tres   %cuatro  %cinco    %seis
+        %siete  %ocho  %nueve  %sota    %caballo  %rey
+    ==
   ::
   ::  (naive) innitializer of the %cartas of %baraja (i.e. deck)
   ::
